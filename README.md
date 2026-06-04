@@ -66,7 +66,7 @@
 | 層 | 技術 |
 |------|------|
 | **フロントエンド** | HTML5 / CSS3 / JavaScript（Vanilla） |
-| **バックエンド** | Python 3.14 / Flask 3.1.0 |
+| **バックエンド** | Python 3.9以上 / Flask 3.1.0 |
 | **音声認識** | OpenAI Whisper API |
 | **議事録生成** | OpenAI GPT-4o |
 | **環境変数管理** | python-dotenv 1.1.0 |
@@ -85,8 +85,8 @@ ai-minutes-maker/
 │                          # - ファイル処理・エラーハンドリング
 │
 ├── requirements.txt       # 依存パッケージ一覧
-├── .env.example          # .env のテンプレート
-├── .env                  # API キー設定（.gitignore に含まれる）
+├── .env.example          # 環境変数のテンプレート
+├── .env                  # ローカル用。GitHubには公開しない
 ├── .gitignore            # Git 管理から除外するファイル設定
 ├── README.md             # このファイル
 │
@@ -124,7 +124,7 @@ ai-minutes-maker/
 
 ```bash
 # 1. リポジトリをクローン
-git clone https://github.com/daifuku/ai-minutes-maker.git
+git clone https://github.com/daifukucode-prog/ai-minutes-maker.git
 cd ai-minutes-maker
 
 # 2. 仮想環境を作成・有効化
