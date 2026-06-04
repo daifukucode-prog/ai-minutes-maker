@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Minutes Maker</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <h1 class="header__title">AI Minutes Maker</h1>
+      <p class="header__subtitle">会議音声から議事録を自動生成します</p>
+    </header>
+
+    <main>
+
+      <!-- アップロードフォーム -->
+      <section class="card upload-section">
+        <h2 class="section-title">音声ファイルをアップロード</h2>
+        <p class="section-desc">対応形式：mp3 / wav / m4a（最大 25MB）</p>
+
+        <form id="uploadForm">
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="audioFile" name="audio" accept=".mp3,.wav,.m4a" class="drop-zone__input" />
+            <div class="drop-zone__body">
+              <div class="drop-zone__icon">🎙</div>
+              <p class="drop-zone__text">クリックしてファイルを選択、またはここにドラッグ＆ドロップ</p>
+              <p class="drop-zone__filename" id="fileName">ファイル未選択</p>
+            </div>
+          </div>
+
+          <div id="errorMsg" class="error-msg" hidden></div>
+
+          <button type="submit" class="btn btn--primary" id="submitBtn">
+            議事録を生成する
+          </button>
+        </form>
+      </section>
+
+      <!-- ローディング -->
+      <div id="loading" class="loading" hidden>
+        <div class="loading__spinner"></div>
+        <p class="loading__text">生成中です。しばらくお待ちください...</p>
+        <p class="loading__sub">音声の長さによっては1〜2分かかる場合があります</p>
+      </div>
+
+      <!-- 結果エリア -->
+      <section id="resultSection" class="result-section" hidden>
+
+        <!-- 文字起こし -->
+        <div class="card">
+          <div class="card__header">
+            <h2 class="section-title">文字起こし結果</h2>
+          </div>
+          <div id="transcription" class="transcription-box"></div>
+        </div>
+
+        <!-- 議事録 -->
+        <div class="card">
+          <div class="card__header">
+            <h2 class="section-title">議事録</h2>
+            <button id="copyBtn" class="btn btn--secondary" onclick="copyMinutes()">
+              コピー
+            </button>
+          </div>
+          <div id="minutes" class="minutes-box"></div>
+          <p id="copyFeedback" class="copy-feedback" hidden>コピーしました！</p>
+        </div>
+
+        <button class="btn btn--outline reset-btn" onclick="resetForm()">
+          別のファイルを処理する
+        </button>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>AI Minutes Maker — Powered by OpenAI Whisper &amp; GPT-4o</p>
+    </footer>
+
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
